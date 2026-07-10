@@ -13,7 +13,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 /**
- * Barrido diario de la tabla de sesiones (security review de B4): cada login y
+ * Barrido diario de la tabla de sesiones (security review): cada login y
  * cada refresh insertan una fila y sin purga la tabla crecería sin techo
  * (~96 filas/día por sesión activa con el access de 15 min). Se borra lo
  * caducado; lo revocado se conserva 30 días por si hay que mirar un incidente.

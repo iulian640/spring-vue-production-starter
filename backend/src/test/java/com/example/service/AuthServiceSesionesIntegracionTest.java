@@ -29,7 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
- * El ciclo de sesiones (B4) con TRANSACCIONES REALES contra PostgreSQL. Los
+ * El ciclo de sesiones con TRANSACCIONES REALES contra PostgreSQL. Los
  * mocks no pueden ver el bug que caza esto: la revocación en bloque del camino
  * de reuso lanzaba el 401 y el rollback de la propia transacción DESHACÍA la
  * revocación — el ladrón (y el legítimo) seguían dentro. Aquí el servicio corre

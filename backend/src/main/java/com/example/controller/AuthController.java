@@ -20,9 +20,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Registro, login y ciclo de sesión: refresh rotativo y logout con revocación
- * (D13.4 + B4). Fuera del perfil `local` (sin BD no hay usuarios; ese perfil
- * es solo para consultar convenios).
+ * Registro, login y ciclo de sesión: refresh rotativo y logout con revocación.
+ * Fuera del perfil `local` (modo sin base de datos: sin BD no hay usuarios).
  */
 @RestController
 @RequestMapping("/api/v1")
@@ -47,7 +46,7 @@ public class AuthController {
     }
 
     /**
-     * Rota un refresh vivo por una sesión nueva (B4). Público como el login:
+     * Rota un refresh vivo por una sesión nueva. Público como el login:
      * quien refresca no tiene (o ya no le vale) el access token.
      */
     @PostMapping("/auth/refresh")

@@ -15,7 +15,7 @@ class RateLimitPropertiesTest {
 
         assertThat(propiedades.auth().capacidad()).isEqualTo(30);
         assertThat(propiedades.auth().recargaPorMinuto()).isEqualTo(20);
-        // El de refresh es más ancho que el de auth (B4): tráfico sostenido
+        // El de refresh es más ancho que el de auth: tráfico sostenido
         // legítimo de toda una plantilla tras una misma IP, ~4/hora por usuario.
         assertThat(propiedades.refresh().capacidad()).isEqualTo(60);
         assertThat(propiedades.refresh().recargaPorMinuto()).isEqualTo(40);

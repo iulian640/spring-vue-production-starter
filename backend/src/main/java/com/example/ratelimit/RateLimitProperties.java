@@ -32,7 +32,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *                       (IP-spoofing) — solo debe activarse cuando de verdad
  *                       hay un proxy/balanceador que sobreescribe esa cabecera.
  * @param auth           presupuesto para login/registro/logout.
- * @param refresh        presupuesto para {@code /auth/refresh} (B4, hallazgo del
+ * @param refresh        presupuesto para {@code /auth/refresh} (hallazgo del
  *                       security review): con el access de 15 min cada usuario
  *                       activo refresca ~4 veces/hora durante TODO el turno, y
  *                       la clave es la IP compartida — metido en el bucket de

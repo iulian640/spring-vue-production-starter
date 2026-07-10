@@ -30,7 +30,6 @@ public class JwtConfig {
     /** Secretos de juguete de los perfiles dev/local/test: JAMÁS válidos fuera de ellos. */
     private static final java.util.Set<String> SECRETOS_DE_JUGUETE = java.util.Set.of(
             "secreto-de-desarrollo-no-usar-en-produccion-32-bytes!",
-            "secreto-local-solo-para-consultar-convenios-32-bytes!!",
             "secreto-de-test-para-jwt-de-32-bytes-o-mas-no-usar-en-prod");
 
     private static final java.util.Set<String> PERFILES_NO_PRODUCTIVOS =

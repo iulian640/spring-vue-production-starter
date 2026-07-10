@@ -17,8 +17,8 @@ import org.springframework.security.web.SecurityFilterChain;
 /**
  * Configuración de seguridad base.
  *
- * <p>Públicos: el health check, los datos de convenios (boletines oficiales),
- * los cálculos anónimos y el alta/login. Todo lo demás exige un JWT Bearer
+ * <p>Públicos: el health check y el ciclo de autenticación (registro, login,
+ * refresh y logout). Todo lo demás exige un JWT Bearer
  * (HS256, ver {@link JwtConfig}) validado por el resource server. La cadena es
  * stateless y sin CSRF (API pura de tokens, sin sesiones ni cookies), y los
  * 401 salen como ProblemDetail RFC 7807 con copy neutro, igual que el resto

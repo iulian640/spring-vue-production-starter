@@ -45,7 +45,7 @@ public interface SesionRepository extends JpaRepository<Sesion, UUID> {
     int revocaPorHash(@Param("tokenHash") String tokenHash, @Param("ahora") Instant ahora);
 
     /**
-     * Purga (security review B4): fuera lo caducado y lo revocado hace tiempo.
+     * Purga (security review): fuera lo caducado y lo revocado hace tiempo.
      * Las revocadas se conservan {@code limiteRevocadas} por si hay que
      * investigar un incidente (la revocación en bloque delata un robo); una
      * sesión caducada ya no abre nada y no aporta.
