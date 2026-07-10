@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 900" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<rect width="1420" height="900" rx="18" fill="#0f1117"/>
+<text x="710.0" y="56" text-anchor="middle" font-size="27" font-weight="700" fill="#e2e8f0">Code map · spring-vue-production-starter</text>
+<text x="710.0" y="86" text-anchor="middle" font-size="15" fill="#8b93a7">815 nodes · 1,594 relationships · 65 detected communities (22 functional ones shown; size = symbol count)</text>
+<path d="M 874 409 Q 906 281 898 150" fill="none" stroke="#7c8db5" stroke-width="4.06" stroke-opacity="0.46"/>
+<path d="M 874 409 Q 862 304 818 209" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 874 409 Q 962 290 1008 150" fill="none" stroke="#7c8db5" stroke-width="4.20" stroke-opacity="0.50"/>
+<path d="M 874 409 Q 868 354 844 303" fill="none" stroke="#7c8db5" stroke-width="3.51" stroke-opacity="0.34"/>
+<path d="M 874 409 Q 905 323 908 232" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 874 409 Q 916 371 943 323" fill="none" stroke="#7c8db5" stroke-width="3.62" stroke-opacity="0.36"/>
+<path d="M 874 409 Q 945 413 1015 395" fill="none" stroke="#7c8db5" stroke-width="2.09" stroke-opacity="0.20"/>
+<path d="M 874 409 Q 952 336 1003 243" fill="none" stroke="#7c8db5" stroke-width="2.09" stroke-opacity="0.20"/>
+<path d="M 874 409 Q 822 334 749 280" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1008 150 Q 953 141 898 150" fill="none" stroke="#7c8db5" stroke-width="2.69" stroke-opacity="0.24"/>
+<path d="M 1008 150 Q 1029 236 1076 312" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1008 150 Q 992 273 1015 395" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1008 150 Q 962 231 943 323" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1008 150 Q 908 164 818 209" fill="none" stroke="#7c8db5" stroke-width="2.09" stroke-opacity="0.20"/>
+<path d="M 1008 150 Q 952 183 908 232" fill="none" stroke="#7c8db5" stroke-width="2.09" stroke-opacity="0.20"/>
+<path d="M 1008 150 Q 914 214 844 303" fill="none" stroke="#7c8db5" stroke-width="2.43" stroke-opacity="0.22"/>
+<path d="M 1008 150 Q 1046 185 1093 206" fill="none" stroke="#7c8db5" stroke-width="2.09" stroke-opacity="0.20"/>
+<path d="M 898 150 Q 937 282 1015 395" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 898 150 Q 943 205 1003 243" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1176 282 Q 1124 289 1076 312" fill="none" stroke="#7c8db5" stroke-width="2.09" stroke-opacity="0.20"/>
+<path d="M 1176 282 Q 1087 326 1015 395" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1176 282 Q 1192 332 1223 375" fill="none" stroke="#7c8db5" stroke-width="2.91" stroke-opacity="0.26"/>
+<path d="M 1176 282 Q 1224 283 1270 268" fill="none" stroke="#7c8db5" stroke-width="2.43" stroke-opacity="0.22"/>
+<path d="M 1015 395 Q 1052 358 1076 312" fill="none" stroke="#7c8db5" stroke-width="2.09" stroke-opacity="0.20"/>
+<path d="M 1015 395 Q 1021 318 1003 243" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1015 395 Q 985 353 943 323" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1015 395 Q 1069 307 1093 206" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1076 312 Q 1009 307 943 323" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1076 312 Q 1093 260 1093 206" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 1076 312 Q 1045 271 1003 243" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 150 647 Q 198 643 243 623" fill="none" stroke="#7c8db5" stroke-width="2.69" stroke-opacity="0.24"/>
+<path d="M 150 647 Q 219 711 305 750" fill="none" stroke="#7c8db5" stroke-width="2.09" stroke-opacity="0.20"/>
+<path d="M 309 547 Q 270 580 243 623" fill="none" stroke="#7c8db5" stroke-width="3.51" stroke-opacity="0.34"/>
+<path d="M 309 547 Q 315 595 336 639" fill="none" stroke="#7c8db5" stroke-width="2.43" stroke-opacity="0.22"/>
+<path d="M 749 280 Q 795 299 844 303" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 305 750 Q 329 697 336 639" fill="none" stroke="#7c8db5" stroke-width="2.91" stroke-opacity="0.26"/>
+<path d="M 305 750 Q 284 682 243 623" fill="none" stroke="#7c8db5" stroke-width="4.06" stroke-opacity="0.46"/>
+<path d="M 305 750 Q 352 739 394 714" fill="none" stroke="#7c8db5" stroke-width="2.09" stroke-opacity="0.20"/>
+<path d="M 305 750 Q 264 725 217 715" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 243 623 Q 288 639 336 639" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<path d="M 243 623 Q 223 667 217 715" fill="none" stroke="#7c8db5" stroke-width="1.62" stroke-opacity="0.18"/>
+<circle cx="874" cy="409" r="29.9" fill="#4fd1c5" fill-opacity="0.92" stroke="#4fd1c5" stroke-opacity="0.32" stroke-width="7"/>
+<text x="874" y="459" text-anchor="middle" font-size="14" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Session entity (JPA)</text>
+<circle cx="1008" cy="150" r="24.7" fill="#f472b6" fill-opacity="0.92" stroke="#f472b6" stroke-opacity="0.32" stroke-width="7"/>
+<text x="1008" y="113" text-anchor="middle" font-size="14" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Account deletion (GDPR)</text>
+<circle cx="898" cy="150" r="22.2" fill="#4fd1c5" fill-opacity="0.92" stroke="#4fd1c5" stroke-opacity="0.32" stroke-width="7"/>
+<text x="898" y="192" text-anchor="middle" font-size="14" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">AuthController &amp; profiles</text>
+<circle cx="1176" cy="282" r="22.0" fill="#f6ad55" fill-opacity="0.92" stroke="#f6ad55" stroke-opacity="0.32" stroke-width="7"/>
+<text x="1176" y="324" text-anchor="middle" font-size="14" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Rate limit filter</text>
+<circle cx="1015" cy="395" r="20.8" fill="#f87171" fill-opacity="0.92" stroke="#f87171" stroke-opacity="0.32" stroke-width="7"/>
+<text x="1015" y="436" text-anchor="middle" font-size="14" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Global error handler</text>
+<circle cx="1076" cy="312" r="20.6" fill="#f87171" fill-opacity="0.92" stroke="#f87171" stroke-opacity="0.32" stroke-width="7"/>
+<text x="1076" y="352" text-anchor="middle" font-size="14" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">401 as ProblemDetail</text>
+<circle cx="1223" cy="375" r="20.2" fill="#f6ad55" fill-opacity="0.92" stroke="#f6ad55" stroke-opacity="0.32" stroke-width="7"/>
+<text x="1223" y="416" text-anchor="middle" font-size="14" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Token bucket</text>
+<circle cx="150" cy="647" r="19.7" fill="#4ade80" fill-opacity="0.92" stroke="#4ade80" stroke-opacity="0.32" stroke-width="7"/>
+<text x="150" y="687" text-anchor="middle" font-size="14" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Navigation &amp; validation (Vue)</text>
+<circle cx="943" cy="323" r="19.0" fill="#4fd1c5" fill-opacity="0.92" stroke="#4fd1c5" stroke-opacity="0.32" stroke-width="7"/>
+<text x="943" y="291" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Duplicate email + auth tests</text>
+<circle cx="309" cy="547" r="18.5" fill="#f87171" fill-opacity="0.92" stroke="#f87171" stroke-opacity="0.32" stroke-width="7"/>
+<text x="309" y="516" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">API errors (frontend)</text>
+<circle cx="749" cy="280" r="18.3" fill="#4fd1c5" fill-opacity="0.92" stroke="#4fd1c5" stroke-opacity="0.32" stroke-width="7"/>
+<text x="749" y="318" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">JWT config</text>
+<circle cx="305" cy="750" r="18.0" fill="#4ade80" fill-opacity="0.92" stroke="#4ade80" stroke-opacity="0.32" stroke-width="7"/>
+<text x="305" y="788" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Session guard (router)</text>
+<circle cx="1093" cy="206" r="17.8" fill="#f472b6" fill-opacity="0.92" stroke="#f472b6" stroke-opacity="0.32" stroke-width="7"/>
+<text x="1093" y="244" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Wrong password + account tests</text>
+<circle cx="1003" cy="243" r="17.8" fill="#f6ad55" fill-opacity="0.92" stroke="#f6ad55" stroke-opacity="0.32" stroke-width="7"/>
+<text x="1003" y="213" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Rate limit sub-key tests</text>
+<circle cx="844" cy="303" r="17.8" fill="#4fd1c5" fill-opacity="0.92" stroke="#4fd1c5" stroke-opacity="0.32" stroke-width="7"/>
+<text x="844" y="341" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Session integration tests</text>
+<circle cx="1270" cy="268" r="17.5" fill="#f6ad55" fill-opacity="0.92" stroke="#f6ad55" stroke-opacity="0.32" stroke-width="7"/>
+<text x="1270" y="239" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Rate limit config</text>
+<circle cx="243" cy="623" r="17.2" fill="#4ade80" fill-opacity="0.92" stroke="#4ade80" stroke-opacity="0.32" stroke-width="7"/>
+<text x="243" y="594" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Auth API client</text>
+<circle cx="394" cy="714" r="16.9" fill="#4ade80" fill-opacity="0.92" stroke="#4ade80" stroke-opacity="0.32" stroke-width="7"/>
+<text x="394" y="751" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">PWA chunk reload</text>
+<circle cx="818" cy="209" r="16.0" fill="#f472b6" fill-opacity="0.92" stroke="#f472b6" stroke-opacity="0.32" stroke-width="7"/>
+<text x="818" y="245" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Deletion cascade test</text>
+<circle cx="908" cy="232" r="15.6" fill="#4fd1c5" fill-opacity="0.92" stroke="#4fd1c5" stroke-opacity="0.32" stroke-width="7"/>
+<text x="908" y="268" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">User repository test</text>
+<circle cx="336" cy="639" r="15.6" fill="#4ade80" fill-opacity="0.92" stroke="#4ade80" stroke-opacity="0.32" stroke-width="7"/>
+<text x="336" y="612" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Vue + PWA bootstrap</text>
+<circle cx="217" cy="715" r="15.6" fill="#f472b6" fill-opacity="0.92" stroke="#f472b6" stroke-opacity="0.32" stroke-width="7"/>
+<text x="217" y="750" text-anchor="middle" font-size="12.5" font-weight="600" fill="#d7dce6" paint-order="stroke" stroke="#0f1117" stroke-width="5">Account view</text>
+<line x1="150" y1="808" x2="1270" y2="808" stroke="#252a38" stroke-width="1"/>
+<circle cx="157" cy="836" r="7" fill="#4fd1c5"/>
+<text x="172" y="841" font-size="14" fill="#a8b0c3">Auth &amp; sessions</text>
+<circle cx="357.0" cy="836" r="7" fill="#f472b6"/>
+<text x="372.0" y="841" font-size="14" fill="#a8b0c3">Account &amp; GDPR</text>
+<circle cx="548.6" cy="836" r="7" fill="#f6ad55"/>
+<text x="563.6" y="841" font-size="14" fill="#a8b0c3">Rate limiting</text>
+<circle cx="731.8" cy="836" r="7" fill="#f87171"/>
+<text x="746.8" y="841" font-size="14" fill="#a8b0c3">RFC 7807 errors</text>
+<circle cx="931.8" cy="836" r="7" fill="#4ade80"/>
+<text x="946.8" y="841" font-size="14" fill="#a8b0c3">Vue frontend</text>
+<text x="1270" y="872" text-anchor="end" font-size="12" fill="#5b6478">generated with graphify · AST + semantic extraction · Louvain clustering</text>
+</svg>

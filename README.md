@@ -57,6 +57,15 @@ backend and an nginx that ships security headers (CSP, HSTS, nosniff,
 frame-deny) and binds to 127.0.0.1 so nobody exposes it without TLS by
 accident. The frontend is a PWA and builds to Android with Capacitor.
 
+## Code map
+
+How the pieces above hang together, extracted from the code itself (AST +
+semantic analysis, Louvain community detection). Node size is the number of
+symbols in each cluster; every functional area keeps its tests next to the
+code they pin.
+
+![Code map: backend clusters for auth/sessions, GDPR deletion, rate limiting and RFC 7807 errors, plus the Vue frontend cluster](docs/graph/architecture-graph.svg)
+
 ## Quickstart
 
 ```bash

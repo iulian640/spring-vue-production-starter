@@ -30,3 +30,6 @@ graphify-out/
 
 # Eclipse/IDE output
 bin/
+
+# graphify (build artifacts, only docs/graph/*.svg is committed)
+graphify-out/
