@@ -7,7 +7,7 @@
  */
 
 /** Marca en sessionStorage para recargar UNA sola vez y no entrar en bucle. */
-const CLAVE_MARCA_RECARGA = 'sofrito.recarga-chunk'
+const CLAVE_MARCA_RECARGA = 'app.recarga-chunk'
 
 /** Mensajes de fallo de import() dinámico según navegador (Chrome / Firefox / Safari). */
 const PATRONES_FALLO_CHUNK = [

@@ -1,4 +1,4 @@
-﻿# Restauración de un backup de Sofrito.
+﻿# Restauración de un backup de Starter.
 #
 # Un backup solo existe si se ha restaurado alguna vez. Este script tiene dos
 # modos:
@@ -31,7 +31,7 @@ if ($SobreLaBaseDeProduccion) {
     docker compose -f $compose cp $Fichero "db:/tmp/$nombre"
     if ($LASTEXITCODE -ne 0) { throw 'docker cp ha fallado' }
     # --clean --if-exists: deja la BD como en el dump, sin residuos de después.
-    docker compose -f $compose exec -T db pg_restore -U sofrito --clean --if-exists -d sofrito "/tmp/$nombre"
+    docker compose -f $compose exec -T db pg_restore -U app --clean --if-exists -d app "/tmp/$nombre"
     if ($LASTEXITCODE -ne 0) { throw "pg_restore ha fallado (exit $LASTEXITCODE)" }
     docker compose -f $compose exec -T db rm -f "/tmp/$nombre"
     Write-Output '[restaura] Producción restaurada. Arranca el backend y comprueba /api/v1/health y un login.'
@@ -39,13 +39,13 @@ if ($SobreLaBaseDeProduccion) {
 }
 
 # --- ENSAYO en contenedor efímero ---
-$drill = 'sofrito-restore-drill'
+$drill = 'app-restore-drill'
 Write-Output "[ensayo] Levantando Postgres efímero '$drill'..."
 # Sin redirigir stderr: en PowerShell 5.1, `2>$null` sobre un exe convierte
 # cada línea de stderr en error terminante con ErrorActionPreference=Stop.
 $restos = docker ps -aq --filter "name=^$drill$"
 if ($restos) { docker rm -f $drill | Out-Null }
-docker run -d --name $drill -e POSTGRES_PASSWORD=drill -e POSTGRES_DB=sofrito postgres:16 | Out-Null
+docker run -d --name $drill -e POSTGRES_PASSWORD=drill -e POSTGRES_DB=app postgres:16 | Out-Null
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo levantar el contenedor de ensayo' }
 
 try {
@@ -62,11 +62,11 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'docker cp al ensayo ha fallado' }
 
     Write-Output "[ensayo] Restaurando $nombre..."
-    docker exec $drill pg_restore -U postgres --no-owner -d sofrito "/tmp/$nombre"
+    docker exec $drill pg_restore -U postgres --no-owner -d app "/tmp/$nombre"
     if ($LASTEXITCODE -ne 0) { throw "pg_restore ha fallado en el ensayo (exit $LASTEXITCODE): este backup NO sirve" }
 
     Write-Output '[ensayo] Filas restauradas por tabla:'
-    docker exec $drill psql -U postgres -d sofrito -t -A -F ': ' -c "SELECT 'usuarios' AS tabla, count(*) FROM usuarios UNION ALL SELECT 'perfiles', count(*) FROM perfiles UNION ALL SELECT 'cuadrantes', count(*) FROM cuadrantes UNION ALL SELECT 'apuntes', count(*) FROM apuntes;"
+    docker exec $drill psql -U postgres -d app -t -A -F ': ' -c "SELECT 'usuarios' AS tabla, count(*) FROM usuarios UNION ALL SELECT 'perfiles', count(*) FROM perfiles UNION ALL SELECT 'cuadrantes', count(*) FROM cuadrantes UNION ALL SELECT 'apuntes', count(*) FROM apuntes;"
     if ($LASTEXITCODE -ne 0) { throw 'El recuento de tablas ha fallado: faltan tablas en el dump' }
 
     Write-Output "[ensayo] OK: el backup $nombre restaura y las 4 tablas están."

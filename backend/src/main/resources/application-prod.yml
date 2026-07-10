@@ -2,17 +2,17 @@
 # no contiene ni un secreto y puede vivir en el repo con tranquilidad.
 spring:
   datasource:
-    url: ${SOFRITO_DB_URL}
-    username: ${SOFRITO_DB_USUARIO}
-    password: ${SOFRITO_DB_PASSWORD}
+    url: ${APP_DB_URL}
+    username: ${APP_DB_USUARIO}
+    password: ${APP_DB_PASSWORD}
 
-sofrito:
+app:
   seguridad:
     jwt:
       # Mínimo 32 bytes; genera uno con: openssl rand -base64 48
-      secreto: ${SOFRITO_SEGURIDAD_JWT_SECRETO}
+      secreto: ${APP_SEGURIDAD_JWT_SECRETO}
   rate-limit:
     habilitado: true
     # Detrás del proxy/nginx del compose de producción la IP real llega en
     # X-Forwarded-For; sin ese proxy delante, poner false (anti IP-spoofing).
-    confiar-en-proxy: ${SOFRITO_CONFIAR_EN_PROXY:true}
+    confiar-en-proxy: ${APP_CONFIAR_EN_PROXY:true}

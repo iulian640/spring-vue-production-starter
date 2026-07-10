@@ -3,20 +3,20 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: sofrito-postgres
+    container_name: app-postgres
     environment:
-      POSTGRES_DB: sofrito
-      POSTGRES_USER: sofrito
-      POSTGRES_PASSWORD: sofrito
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
     ports:
       - "5432:5432"
     volumes:
-      - sofrito-pgdata:/var/lib/postgresql/data
+      - app-pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U sofrito -d sofrito"]
+      test: ["CMD-SHELL", "pg_isready -U app -d app"]
       interval: 5s
       timeout: 3s
       retries: 10
 
 volumes:
-  sofrito-pgdata:
+  app-pgdata:

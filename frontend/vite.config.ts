@@ -14,8 +14,8 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
       },
       manifest: {
-        name: 'Sofrito',
-        short_name: 'Sofrito',
+        name: 'Starter',
+        short_name: 'Starter',
         description:
           'Base de producción para apps Spring Boot + Vue: cuentas, sesiones revocables y RGPD ya resueltos.',
         lang: 'es',
@@ -48,10 +48,10 @@ export default defineConfig({
   server: {
     proxy: {
       // Dev only: forward API calls to the local Spring Boot backend.
-      // SOFRITO_API permite apuntar a otro puerto (p. ej. un backend paralelo
+      // APP_API permite apuntar a otro puerto (p. ej. un backend paralelo
       // durante los E2E) sin tocar este fichero.
       '/api': {
-        target: process.env.SOFRITO_API ?? 'http://localhost:8080',
+        target: process.env.APP_API ?? 'http://localhost:8080',
         changeOrigin: true,
       },
     },

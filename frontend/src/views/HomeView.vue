@@ -6,7 +6,7 @@ const auth = useAuthStore()
 
 <template>
   <main class="portada">
-    <h1>Sofrito</h1>
+    <h1>Starter</h1>
     <p class="texto-suave">
       La base de producción ya está hecha: cuentas con sesiones revocables,
       borrado RGPD, rate limiting y errores RFC 7807. Tu app empieza aquí.

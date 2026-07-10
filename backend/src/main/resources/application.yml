@@ -1,6 +1,6 @@
 spring:
   application:
-    name: sofrito-backend
+    name: starter-backend
   profiles:
     default: dev
   mvc:
@@ -22,7 +22,7 @@ management:
       exposure:
         include: health,info
 
-sofrito:
+app:
   rate-limit:
     # Presupuestos por defecto (producción). Ver RateLimitProperties.
     habilitado: true

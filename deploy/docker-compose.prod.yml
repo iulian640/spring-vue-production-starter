@@ -1,4 +1,4 @@
-# Producción autocontenida de Sofrito: BD + backend + web (nginx con la PWA).
+# Producción autocontenida de Starter: BD + backend + web (nginx con la PWA).
 # Uso: crear deploy/.env con las variables de abajo y
 #   docker compose -f deploy/docker-compose.prod.yml up -d --build
 services:
@@ -6,13 +6,13 @@ services:
     image: postgres:16
     restart: unless-stopped
     environment:
-      POSTGRES_DB: sofrito
-      POSTGRES_USER: sofrito
-      POSTGRES_PASSWORD: ${SOFRITO_DB_PASSWORD:?falta SOFRITO_DB_PASSWORD en deploy/.env}
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: ${APP_DB_PASSWORD:?falta APP_DB_PASSWORD en deploy/.env}
     volumes:
-      - sofrito-datos:/var/lib/postgresql/data
+      - app-datos:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U sofrito']
+      test: ['CMD-SHELL', 'pg_isready -U app']
       interval: 10s
       timeout: 5s
       retries: 5
@@ -26,13 +26,13 @@ services:
       db:
         condition: service_healthy
     environment:
-      SOFRITO_DB_URL: jdbc:postgresql://db:5432/sofrito
-      SOFRITO_DB_USUARIO: sofrito
-      SOFRITO_DB_PASSWORD: ${SOFRITO_DB_PASSWORD:?falta SOFRITO_DB_PASSWORD en deploy/.env}
+      APP_DB_URL: jdbc:postgresql://db:5432/app
+      APP_DB_USUARIO: app
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?falta APP_DB_PASSWORD en deploy/.env}
       # Mínimo 32 bytes. Genera uno con: openssl rand -base64 48
-      SOFRITO_SEGURIDAD_JWT_SECRETO: ${SOFRITO_SEGURIDAD_JWT_SECRETO:?falta SOFRITO_SEGURIDAD_JWT_SECRETO en deploy/.env}
+      APP_SEGURIDAD_JWT_SECRETO: ${APP_SEGURIDAD_JWT_SECRETO:?falta APP_SEGURIDAD_JWT_SECRETO en deploy/.env}
       # Detrás del nginx de este compose la IP real llega en X-Forwarded-For.
-      SOFRITO_CONFIAR_EN_PROXY: 'true'
+      APP_CONFIAR_EN_PROXY: 'true'
 
   web:
     image: nginx:alpine
@@ -57,4 +57,4 @@ services:
       - ../frontend/dist:/usr/share/nginx/html:ro
 
 volumes:
-  sofrito-datos:
+  app-datos:

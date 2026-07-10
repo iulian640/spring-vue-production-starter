@@ -20,8 +20,8 @@ import type { CapacitorConfig } from '@capacitor/cli'
 const servidorDev = process.env.CAP_SERVER_URL
 
 const config: CapacitorConfig = {
-  appId: 'es.sofrito.app',
-  appName: 'Sofrito',
+  appId: 'com.example.app',
+  appName: 'Starter',
   webDir: 'dist',
   ...(servidorDev ? { server: { url: servidorDev, cleartext: true } } : {}),
 }

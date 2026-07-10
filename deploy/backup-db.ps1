@@ -1,4 +1,4 @@
-﻿# Copia de seguridad de la base de datos de producción de Sofrito.
+﻿# Copia de seguridad de la base de datos de producción de Starter.
 #
 # Los datos de la BD son la EVIDENCIA de los usuarios (diario sellado,
 # cuadrantes con historial): perderlos es perder aquello para lo que existe
@@ -14,7 +14,7 @@
 # Restauración:  .\restaura-db.ps1 (ensaya SIEMPRE antes de necesitarlo)
 param(
     # Carpeta local de backups (fuera del repo: un `git clean` no puede llevárselos).
-    [string]$Destino = "$env:USERPROFILE\Documents\sofrito-backups",
+    [string]$Destino = "$env:USERPROFILE\Documents\app-backups",
     # Segunda copia (recomendado: una carpeta sincronizada con la nube o un
     # disco externo). Vacío = solo copia local.
     [string]$CopiaExterna = '',
@@ -28,15 +28,15 @@ $compose = Join-Path $PSScriptRoot 'docker-compose.prod.yml'
 if (-not (Test-Path $compose)) { throw "No encuentro $compose" }
 
 $sello = Get-Date -Format 'yyyyMMdd-HHmmss'
-$fichero = "sofrito-$sello.dump"
+$fichero = "app-$sello.dump"
 $rutaLocal = Join-Path $Destino $fichero
 if (-not (Test-Path $Destino)) { New-Item -ItemType Directory -Force $Destino | Out-Null }
 
 # 1) Dump DENTRO del contenedor a fichero y luego docker cp: el pipe de
 #    PowerShell 5.1 corrompe binarios (convierte el stream a texto UTF-16),
 #    así que el dump nunca debe atravesar stdout del host.
-Write-Output "[backup] pg_dump de 'sofrito' en el servicio db..."
-docker compose -f $compose exec -T db pg_dump -U sofrito -Fc -f "/tmp/$fichero" sofrito
+Write-Output "[backup] pg_dump de 'app' en el servicio db..."
+docker compose -f $compose exec -T db pg_dump -U app -Fc -f "/tmp/$fichero" app
 if ($LASTEXITCODE -ne 0) { throw "pg_dump ha fallado (exit $LASTEXITCODE). ¿Está levantado el compose de producción?" }
 
 # 2) Integridad ANTES de darlo por bueno: si pg_restore no puede listar el
@@ -62,7 +62,7 @@ if ($CopiaExterna -ne '') {
 }
 
 # 5) Retención local: fuera lo más viejo que $DiasRetencion.
-$purgados = Get-ChildItem $Destino -Filter 'sofrito-*.dump' |
+$purgados = Get-ChildItem $Destino -Filter 'app-*.dump' |
     Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-$DiasRetencion) }
 if ($purgados) {
     $purgados | Remove-Item -Force -Confirm:$false

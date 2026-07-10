@@ -1,13 +1,13 @@
 # Local development: PostgreSQL 16 from the docker-compose.yml at the repo root.
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/sofrito
-    username: sofrito
-    password: sofrito
+    url: jdbc:postgresql://localhost:5432/app
+    username: app
+    password: app
 
 # Secreto JWT SOLO PARA DESARROLLO LOCAL (jamás en producción: allí viene de
-# la variable de entorno SOFRITO_SEGURIDAD_JWT_SECRETO).
-sofrito:
+# la variable de entorno APP_SEGURIDAD_JWT_SECRETO).
+app:
   seguridad:
     jwt:
       secreto: "secreto-de-desarrollo-no-usar-en-produccion-32-bytes!"

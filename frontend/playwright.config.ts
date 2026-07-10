@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test'
  * E2E contra el stack REAL: vite dev (proxy /api) + Spring Boot + Postgres.
  * En CI el backend corre en localhost:8080 con un Postgres de servicio; en
  * local vale el stack de desarrollo de siempre (o un backend paralelo con
- * SOFRITO_API, ver vite.config.ts).
+ * APP_API, ver vite.config.ts).
  *
  * Solo Chromium a propósito: la app de producción ES un WebView Chromium
  * (Capacitor/Android); cross-browser será relevante si la web se abre a

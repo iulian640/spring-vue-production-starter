@@ -1,14 +1,12 @@
-# Sofrito
+# spring-vue-production-starter
 
-Every serious dish in a Spanish kitchen starts with a good sofrito. Every
-serious app starts with the boring parts done right: accounts, sessions,
-deletion, limits, tests, backups. This is that base, extracted from a real
-production app and kept runnable.
+A Spring Boot 3 + Vue 3 + Capacitor starter with the boring parts done right:
+accounts, sessions, deletion, limits, tests, backups. Runnable as is.
 
-Spring Boot 3 + Vue 3 + Capacitor. Not a toy scaffold: everything here shipped
-first in [MeDeben](https://github.com/iulian640/medeben), a time-tracking app
-for hospitality workers in Spain, and was reviewed and hardened there before
-being extracted.
+Not a toy scaffold: everything here shipped first in
+[MeDeben](https://github.com/iulian640/medeben), a time-tracking app for
+hospitality workers in Spain, and was reviewed and hardened there before being
+extracted.
 
 ## What's inside, and why it's shaped this way
 

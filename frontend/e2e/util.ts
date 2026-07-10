@@ -2,7 +2,7 @@ import { expect, type Page } from '@playwright/test'
 
 /** Cada viaje estrena cuenta: la BD es real y los tests no comparten estado. */
 export function emailUnico(): string {
-  return `e2e-${Date.now()}-${Math.random().toString(36).slice(2, 8)}@sofrito.test`
+  return `e2e-${Date.now()}-${Math.random().toString(36).slice(2, 8)}@app.test`
 }
 
 export const PASSWORD_E2E = 'Clave-e2e-2026!'

@@ -40,7 +40,7 @@ function crearEntorno(error: () => Error = errorDeChunk) {
 function errorDeChunk() {
   // Mensaje real de Chrome cuando el chunk con hash viejo ya no existe.
   return new TypeError(
-    'Failed to fetch dynamically imported module: https://sofrito.app/assets/PerfilView-a1b2c3.js',
+    'Failed to fetch dynamically imported module: https://app.app/assets/PerfilView-a1b2c3.js',
   )
 }
 
