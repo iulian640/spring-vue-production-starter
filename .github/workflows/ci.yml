@@ -7,7 +7,7 @@ on:
 
 jobs:
   backend:
-    name: Backend (mvn verify + validador de convenios)
+    name: Backend (mvn verify: unitarios + Testcontainers + gate JaCoCo)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
