@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Starter: el euro que te deben (mismo glifo que el icono Android). -->
+  <!-- Doble chevron (frontend sobre backend), mismo glifo que el icono PWA. -->
   <rect width="64" height="64" rx="14" fill="#1a1a2e"/>
-  <path d="M 44.25 20.94 A 14.375 14.375 0 1 0 44.25 43.06"
-        fill="none" stroke="#2dd4bf" stroke-width="5.75" stroke-linecap="round"/>
-  <rect x="18.5" y="26.5" width="18.75" height="3.25" rx="1.6" fill="#f3f4f6"/>
-  <rect x="18.5" y="34.25" width="18.75" height="3.25" rx="1.6" fill="#f3f4f6"/>
+  <path d="M 17 31 L 32 19.5 L 47 31" fill="none" stroke="#42b883" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 17 45 L 32 33.5 L 47 45" fill="none" stroke="#6db33f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
