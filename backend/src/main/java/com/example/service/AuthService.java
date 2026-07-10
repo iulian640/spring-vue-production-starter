@@ -31,12 +31,12 @@ import java.util.Locale;
 import java.util.Optional;
 
 /**
- * Registro, login y ciclo de la sesión (D13.4 + B4). Reglas de seguridad:
+ * Registro, login y ciclo de la sesión. Reglas de seguridad:
  * BCrypt para el hash (nunca se guarda ni se registra la contraseña en claro),
  * mensaje de login único (anti enumeración), y verificación de contraseña
  * también cuando el email no existe (coste constante, anti timing).
  *
- * <p>Sesión en dos piezas (B4): un access JWT CORTO y stateless (los endpoints
+ * <p>Sesión en dos piezas: un access JWT CORTO y stateless (los endpoints
  * no tocan BD para validarlo) y un refresh OPACO largo guardado hasheado en
  * {@code sesiones}, que sí se puede revocar (logout real; el borrado de cuenta
  * lo arrastra el cascade). El refresh ROTA en cada uso: gastar dos veces el

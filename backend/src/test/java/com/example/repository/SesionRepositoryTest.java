@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 /**
- * Las transiciones de estado de las sesiones (B4) contra PostgreSQL real: la
+ * Las transiciones de estado de las sesiones contra PostgreSQL real: la
  * reclamación ATÓMICA del refresh es lo que sostiene la detección de robo por
  * reuso — si dos peticiones pudieran gastar el mismo token, la defensa entera
  * sería teatro. Un mock no puede probar el WHERE.

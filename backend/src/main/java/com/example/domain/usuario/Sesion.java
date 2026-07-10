@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Una sesión de refresh (B4): el access JWT es corto y stateless; esta fila es
+ * Una sesión de refresh: el access JWT es corto y stateless; esta fila es
  * lo que se puede REVOCAR. Guarda solo el hash SHA-256 del token opaco (si la
  * BD se filtra, los tokens no se reconstruyen). {@code usadaEn} implementa la
  * rotación: un refresh se gasta una vez; su reutilización delata un robo. Las

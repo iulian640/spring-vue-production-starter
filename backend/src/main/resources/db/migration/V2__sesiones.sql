@@ -1,4 +1,4 @@
--- Sesiones con refresh token REVOCABLE (B4). El access JWT pasa a ser corto
+-- Sesiones con refresh token REVOCABLE. El access JWT pasa a ser corto
 -- (15 min) y sigue stateless; la sesión larga vive aquí y sí se puede matar
 -- desde el servidor: logout real, borrado de cuenta (el CASCADE la arrastra)
 -- y revocación en bloque si se detecta un refresh robado.

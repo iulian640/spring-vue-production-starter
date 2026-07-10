@@ -28,7 +28,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@DisplayName("AuthService — registro, login y ciclo de sesión (D13.4 + B4)")
+@DisplayName("AuthService — registro, login y ciclo de sesión")
 class AuthServiceTest {
 
     private static final String EMAIL = "trabajador@example.com";
@@ -121,7 +121,7 @@ class AuthServiceTest {
                 .isThrownBy(() -> servicio.login("nadie@example.com", PASSWORD));
     }
 
-    // --- Refresh: rotación y revocación (B4) ---
+    // --- Refresh: rotación y revocación ---
 
     @Test
     @DisplayName("refresca: gasta la sesión vieja (atómico) y emite access + refresh NUEVOS")

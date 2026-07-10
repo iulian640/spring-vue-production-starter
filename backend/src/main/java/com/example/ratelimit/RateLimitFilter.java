@@ -106,7 +106,7 @@ public final class RateLimitFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                      FilterChain filterChain) throws ServletException, IOException {
         String ruta = rutaNormalizada(request);
-        // El refresh (B4) va ANTES que auth: cuelga de /auth/ pero es tráfico
+        // El refresh va ANTES que auth: cuelga de /auth/ pero es tráfico
         // sostenido legítimo (cada usuario activo, ~4/hora durante todo el
         // turno) y metería a la plantilla entera en el bucket estricto del
         // login (security review). Presupuesto propio, también por IP.

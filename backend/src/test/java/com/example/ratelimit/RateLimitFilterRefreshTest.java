@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * El bucket PROPIO de {@code /auth/refresh} (security review de B4): con el
+ * El bucket PROPIO de {@code /auth/refresh} (security review): con el
  * access de 15 min, el refresh es tráfico sostenido de toda la plantilla tras
  * una misma IP — metido en el bucket estricto de login, los legítimos se
  * auto-bloquearían el login. Aquí se prueba que ambos cubos son independientes.

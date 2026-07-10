@@ -35,7 +35,7 @@ app:
       capacidad: 30
       recarga-por-minuto: 20
     refresh:
-      # /auth/refresh (B4): con el access de 15 min, cada usuario activo
+      # /auth/refresh: con el access de 15 min, cada usuario activo
       # refresca ~4 veces/hora durante TODO el turno, y la clave es la IP
       # compartida — en el bucket estricto de auth, la plantilla se
       # auto-bloquearía el login. La fuerza bruta no es la amenaza (256 bits):

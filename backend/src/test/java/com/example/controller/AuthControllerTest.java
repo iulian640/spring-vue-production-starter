@@ -80,7 +80,7 @@ class AuthControllerTest {
     }
 
     @Test
-    @DisplayName("POST /auth/login correcto → access, expiración y refresh (B4)")
+    @DisplayName("POST /auth/login correcto → access, expiración y refresh")
     void login() throws Exception {
         when(authService.login(anyString(), anyString())).thenReturn(sesionDePrueba());
 
