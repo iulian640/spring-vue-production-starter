@@ -1,0 +1,128 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  backend:
+    name: Backend (mvn verify + validador de convenios)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/setup-java@0f481fcb613427c0f801b606911222b5b6f3083a # v5.5.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      # En los runners hay Docker: aquí SÍ corren los tests de Testcontainers
+      # que en local se saltan, además del validador cruzado de la capa
+      # normalizada contra las transcripciones. verify (no test) para que
+      # JaCoCo genere el informe y aplique el gate de líneas.
+      - name: Tests y cobertura
+        working-directory: backend
+        run: mvn -B --no-transfer-progress verify
+      - name: Subir informe de cobertura (JaCoCo)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: jacoco-report
+          path: backend/target/site/jacoco/
+          if-no-files-found: ignore
+      - name: Subir surefire-reports (solo si fallan los tests)
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: surefire-reports
+          path: backend/target/surefire-reports/
+          if-no-files-found: ignore
+
+  frontend:
+    name: Frontend (lint + vitest + build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Tests y cobertura
+        run: npm run test:coverage
+      - name: Subir informe de cobertura (vitest)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: vitest-coverage
+          path: frontend/coverage/
+          if-no-files-found: ignore
+      - name: Build
+        run: npm run build
+
+  e2e:
+    name: E2E (Playwright contra el stack real)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: sofrito
+          POSTGRES_USER: sofrito
+          POSTGRES_PASSWORD: sofrito
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U sofrito"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/setup-java@0f481fcb613427c0f801b606911222b5b6f3083a # v5.5.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Compilar el backend (los unitarios ya corren en el job backend)
+        working-directory: backend
+        run: mvn -B --no-transfer-progress package -DskipTests
+      - name: Arrancar el backend (perfil dev contra el Postgres de servicio)
+        working-directory: backend
+        run: |
+          java -jar target/*.jar --spring.profiles.active=dev &
+          for i in $(seq 1 45); do
+            if curl -sf http://localhost:8080/api/v1/health > /dev/null; then break; fi
+            sleep 2
+          done
+          curl -sf http://localhost:8080/api/v1/health
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install
+        working-directory: frontend
+        run: npm ci
+      - name: Instalar Chromium de Playwright
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: Recorridos E2E
+        working-directory: frontend
+        run: npm run test:e2e
+      - name: Subir informe de Playwright (solo si falla)
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: playwright-report
+          path: |
+            frontend/playwright-report/
+            frontend/test-results/
+          if-no-files-found: ignore

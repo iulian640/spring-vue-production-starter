@@ -1,0 +1,405 @@
+/*
+ * Sofrito — sistema de diseño "Nómina clara".
+ *
+ * La claridad de un documento oficial, pero a favor del trabajador: papel
+ * blanco, tinta casi negra, y el verde reservado para el dinero y la acción.
+ * Ningún componente inventa colores, tamaños ni tiempos: todo sale de aquí.
+ */
+
+/*
+ * La fuente de la casa: Public Sans (diseñada para los documentos oficiales
+ * del gobierno de EE. UU. — literal para "nómina clara"). Variable 100-900 y
+ * con numerales tabulares (tnum) para que las cifras no bailen al animarse.
+ * Subset latín generado a mano (Google Fonts elimina tnum al subsetear): 25 KB.
+ */
+@font-face {
+  font-family: 'Public Sans';
+  src: url('./assets/fuentes/PublicSans-variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ——— Color: papel y tinta (tema claro) ——— */
+  --papel: oklch(100% 0 0);
+  --papel-2: oklch(96.5% 0.005 190); /* superficies: nav, filas, paneles */
+  --tinta: oklch(24% 0.02 275);
+  --tinta-suave: oklch(45% 0.015 275); /* secundario; AA sobre papel */
+  --linea: oklch(89% 0.007 275); /* separadores */
+  /* Bordes de controles: ≥3:1 sobre papel Y papel-2 (WCAG 1.4.11, verificado
+   * por cálculo: 4,3:1 / 3,9:1) — el límite de un input tiene que verse. */
+  --linea-fuerte: oklch(58% 0.012 275);
+
+  /* El verde del DINERO y de la acción. Es la identidad de marca ya decidida
+   * (sobrio, no banca de neón); se conserva el valor exacto. */
+  --verde: #0f766e;
+  --verde-vivo: #0d685f; /* hover del primario: un punto más hondo, no más chillón */
+  --sobre-verde: #ffffff;
+  --verde-suave: oklch(96% 0.019 183); /* fondo teñido de lo monetario */
+
+  --alerta: #b03427; /* rojo aviso, AA sobre papel */
+  --alerta-suave: oklch(96% 0.018 27);
+  --sobre-alerta: #ffffff; /* texto sobre fondo --alerta (botón destructivo); AA: 6,4:1 */
+
+  /* ——— Tipografía: escala fija en rem, ratio ~1.2 ——— */
+  --tipo-familia: 'Public Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --tipo-xs: 0.75rem; /* legal, citas */
+  --tipo-sm: 0.875rem; /* secundario, metadatos */
+  --tipo-base: 1rem; /* cuerpo */
+  --tipo-lg: 1.1875rem; /* lead, títulos de sección */
+  --tipo-xl: 1.4375rem; /* títulos de pantalla secundarios */
+  --tipo-titulo: 1.75rem; /* h1 de pantalla */
+  --tipo-importe: 3.5rem; /* LA cifra */
+
+  --peso-texto: 400;
+  --peso-etiqueta: 600; /* botones, labels, dd de datos */
+  --peso-titulo: 700;
+  --peso-importe: 800;
+
+  /* ——— Espaciado: base 4pt, semántico ——— */
+  --esp-2xs: 0.25rem;
+  --esp-xs: 0.5rem;
+  --esp-sm: 0.75rem;
+  --esp-md: 1rem;
+  --esp-lg: 1.5rem;
+  --esp-xl: 2rem;
+  --esp-2xl: 3rem;
+
+  /* ——— Forma ——— */
+  --radio-control: 0.5rem;
+  --radio-tarjeta: 0.75rem;
+  --radio-pastilla: 999px;
+
+  --sombra-1: 0 1px 2px oklch(0% 0 0 / 0.05), 0 2px 8px oklch(0% 0 0 / 0.04);
+  --sombra-2: 0 4px 12px oklch(0% 0 0 / 0.08), 0 12px 32px oklch(0% 0 0 / 0.07);
+
+  /* ——— Movimiento (anime.js y CSS beben de los mismos tiempos) ——— */
+  --dur-toque: 120ms; /* feedback inmediato: pulsar, marcar */
+  --dur-estado: 200ms; /* cambios de estado: hover, mostrar/ocultar */
+  --dur-panel: 320ms; /* despliegues y paneles */
+  --dur-entrada: 550ms; /* entradas de contenido */
+  --dur-vista-salida: 140ms; /* la salida de pantalla: ~70% de su entrada */
+  --curva-salida: cubic-bezier(0.22, 1, 0.36, 1); /* outQuint: decidida, sin rebote */
+  --curva-suave: cubic-bezier(0.45, 0, 0.2, 1);
+
+  /* ——— Escala z semántica ——— */
+  --z-nav: 10;
+  --z-velo: 20;
+  --z-flotante: 30;
+
+  /* La barra de navegación inferior reserva su hueco (más el safe area). */
+  --altura-nav: 3.75rem;
+
+  font-family: var(--tipo-familia);
+  line-height: 1.5;
+  color-scheme: light dark;
+  color: var(--tinta);
+  background: var(--papel);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+}
+
+/* Tema oscuro: la misma tinta y el mismo verde, subidos de luz para leer
+ * de noche al cerrar el bar. Sigue al sistema; no hay interruptor propio. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel: #1a1a2e;
+    --papel-2: #22223a;
+    --tinta: #f3f4f6;
+    --tinta-suave: #aab0c0;
+    --linea: #32334c;
+    /* Igual que en claro: ≥3:1 sobre los dos papeles (3,6:1 / 3,2:1). */
+    --linea-fuerte: #6c6f9a;
+
+    --verde: #2dd4bf;
+    --verde-vivo: #52ddcb;
+    --sobre-verde: #06241f;
+    --verde-suave: #163330;
+
+    --alerta: #f1948a;
+    --alerta-suave: #3a2226;
+    --sobre-alerta: #2a1210; /* tinta oscura sobre el salmón de alerta; AA: 7,5:1 */
+
+    /* Las sombras casi no se ven sobre tinta; el borde hace su trabajo. */
+    --sombra-1: 0 1px 2px oklch(0% 0 0 / 0.3);
+    --sombra-2: 0 6px 20px oklch(0% 0 0 / 0.45);
+  }
+}
+
+/* ——— Base ——— */
+
+/* Border-box en todo: el padding vive DENTRO del ancho declarado. Sin esto,
+ * un .boton--ancho (width 100% + padding) desborda su tarjeta 2,5rem. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: var(--peso-titulo);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+/* Foco visible SIEMPRE (teclado y lectores): mismo anillo en toda la app. */
+:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+  border-radius: var(--esp-2xs);
+}
+
+::selection {
+  background: var(--verde-suave);
+}
+
+a {
+  color: var(--verde);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+/* Cifras que deben alinearse y no bailar (tnum de Public Sans). */
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fila de nómina con puntos de guía: etiqueta a la izquierda, dato a la
+ * derecha y la línea punteada de puente. La usan el resumen y la libreta —
+ * mismo dibujo en todas partes, definido una sola vez. */
+.fila {
+  display: flex;
+  align-items: baseline;
+  gap: var(--esp-xs);
+}
+
+.fila::after {
+  content: '';
+  order: 2;
+  flex: 1;
+  border-bottom: 1px dotted var(--linea-fuerte);
+  transform: translateY(-0.25em);
+}
+
+.fila dt {
+  order: 1;
+}
+
+.fila dd {
+  order: 3;
+  font-weight: var(--peso-etiqueta);
+  margin: 0;
+}
+
+/* ——— Capa de componentes: el mismo vocabulario en toda la app ———
+ * Un botón de guardar es EL botón de guardar, se llame como se llame la
+ * pantalla. Las vistas usan estas clases y solo añaden disposición local. */
+
+.boton,
+.boton-secundario,
+.boton-fantasma {
+  font: inherit;
+  font-weight: var(--peso-etiqueta);
+  min-height: 2.75rem; /* 44px: objetivo táctil */
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radio-control);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-xs);
+  text-decoration: none;
+  transition:
+    background-color var(--dur-estado) var(--curva-suave),
+    border-color var(--dur-estado) var(--curva-suave),
+    transform var(--dur-toque) var(--curva-salida);
+}
+
+.boton:active,
+.boton-secundario:active,
+.boton-fantasma:active {
+  transform: scale(0.98);
+}
+
+.boton:disabled,
+.boton-secundario:disabled,
+.boton-fantasma:disabled {
+  opacity: 0.45;
+  cursor: default;
+  transform: none;
+}
+
+/* Primario: la acción de la pantalla. Verde, uno por vista como mucho. */
+.boton {
+  border: 1px solid transparent;
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+
+.boton:hover:not(:disabled) {
+  background: var(--verde-vivo);
+}
+
+/* Secundario: acciones de apoyo (reintentar, cambiar de mes, cancelar). */
+.boton-secundario {
+  border: 1px solid var(--linea-fuerte);
+  background: var(--papel);
+  color: var(--tinta);
+}
+
+.boton-secundario:hover:not(:disabled) {
+  background: var(--papel-2);
+}
+
+/* Fantasma: terciario, parece un enlace pero con área táctil de botón. */
+.boton-fantasma {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--verde);
+}
+
+.boton-fantasma:hover:not(:disabled) {
+  background: var(--verde-suave);
+}
+
+.boton--ancho {
+  width: 100%;
+}
+
+/* Campos de formulario: label encima, control cómodo para el pulgar. */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2xs);
+}
+
+.campo > label {
+  font-size: var(--tipo-sm);
+  font-weight: var(--peso-etiqueta);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  font: inherit;
+  color: var(--tinta);
+  background: var(--papel);
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio-control);
+  transition: border-color var(--dur-estado) var(--curva-suave);
+}
+
+.campo input:hover,
+.campo select:hover,
+.campo textarea:hover {
+  border-color: var(--tinta-suave);
+}
+
+.campo--error input,
+.campo--error select {
+  border-color: var(--alerta);
+}
+
+.campo-ayuda {
+  font-size: var(--tipo-sm);
+  color: var(--tinta-suave);
+}
+
+.campo-error {
+  font-size: var(--tipo-sm);
+  color: var(--alerta);
+  font-weight: var(--peso-etiqueta);
+}
+
+/* Tarjeta: agrupa un bloque de datos con nombre propio. Sin anidar jamás. */
+.tarjeta {
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--esp-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-xs);
+}
+
+/* Título de sección: peso y espacio, no mayúsculas espaciadas. */
+.titulo-seccion {
+  font-size: var(--tipo-base);
+  font-weight: var(--peso-etiqueta);
+  line-height: 1.3;
+}
+
+/* Aviso en bloque: fondo teñido y borde completo, nunca una franja lateral. */
+.aviso-bloque {
+  background: var(--alerta-suave);
+  border: 1px solid color-mix(in oklab, var(--alerta) 30%, transparent);
+  border-radius: var(--radio-tarjeta);
+  padding: var(--esp-sm) var(--esp-md);
+  font-size: var(--tipo-sm);
+}
+
+.aviso-bloque strong,
+.aviso-bloque .aviso-marca {
+  color: var(--alerta);
+}
+
+/* Texto secundario: siempre con color propio, nunca con opacity (contraste). */
+.texto-suave {
+  color: var(--tinta-suave);
+}
+
+.texto-sm {
+  font-size: var(--tipo-sm);
+}
+
+.texto-xs {
+  font-size: var(--tipo-xs);
+}
+
+/* ——— Transición entre pantallas (App.vue) ——— */
+
+.vista-enter-active {
+  transition:
+    opacity var(--dur-estado) var(--curva-salida),
+    transform var(--dur-estado) var(--curva-salida);
+}
+
+.vista-leave-active {
+  transition: opacity var(--dur-vista-salida) var(--curva-suave);
+}
+
+.vista-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.vista-leave-to {
+  opacity: 0;
+}
+
+/* Quien pide menos movimiento, lo tiene: sin transiciones ni animaciones.
+ * (La parte de anime.js se corta en lib/animacion.ts con la misma media query.) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

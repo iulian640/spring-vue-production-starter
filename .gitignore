@@ -1,0 +1,32 @@
+# Java
+target/
+*.class
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.capacitor.example
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# graphify knowledge graph output (local tooling)
+graphify-out/
+
+# Eclipse/IDE output
+bin/

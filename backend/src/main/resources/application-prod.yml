@@ -1,0 +1,18 @@
+# Producción: TODO lo sensible viene de variables de entorno — este fichero
+# no contiene ni un secreto y puede vivir en el repo con tranquilidad.
+spring:
+  datasource:
+    url: ${SOFRITO_DB_URL}
+    username: ${SOFRITO_DB_USUARIO}
+    password: ${SOFRITO_DB_PASSWORD}
+
+sofrito:
+  seguridad:
+    jwt:
+      # Mínimo 32 bytes; genera uno con: openssl rand -base64 48
+      secreto: ${SOFRITO_SEGURIDAD_JWT_SECRETO}
+  rate-limit:
+    habilitado: true
+    # Detrás del proxy/nginx del compose de producción la IP real llega en
+    # X-Forwarded-For; sin ese proxy delante, poner false (anti IP-spoofing).
+    confiar-en-proxy: ${SOFRITO_CONFIAR_EN_PROXY:true}

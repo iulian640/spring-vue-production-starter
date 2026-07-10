@@ -1,0 +1,18 @@
+# Test profile. Integration tests provide their own PostgreSQL via
+# Testcontainers (@ServiceConnection) — no datasource is configured here
+# on purpose. H2 is deliberately NOT used (tests must run against the same
+# engine as production).
+spring:
+  flyway:
+    enabled: true
+
+sofrito:
+  seguridad:
+    jwt:
+      secreto: "secreto-de-test-para-jwt-de-32-bytes-o-mas-no-usar-en-prod"
+  rate-limit:
+    # Desactivado en el perfil de test: los tests de integración (@SpringBootTest)
+    # no deben verse afectados por el límite de peticiones. Los tests propios
+    # del rate limiting (RateLimitFilter*Test) lo activan explícitamente con
+    # @TestPropertySource y presupuestos pequeños y deterministas.
+    habilitado: false

@@ -1,0 +1,22 @@
+# Local development only: PostgreSQL for the backend (profile dev).
+# Usage: docker compose up -d
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sofrito-postgres
+    environment:
+      POSTGRES_DB: sofrito
+      POSTGRES_USER: sofrito
+      POSTGRES_PASSWORD: sofrito
+    ports:
+      - "5432:5432"
+    volumes:
+      - sofrito-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sofrito -d sofrito"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  sofrito-pgdata:

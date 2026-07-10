@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: sofrito-backend
+  profiles:
+    default: dev
+  mvc:
+    problemdetails:
+      # Errores del framework (JSON malformado, parametro ausente...) tambien
+      # como RFC 7807, igual que los del GlobalExceptionHandler
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+sofrito:
+  rate-limit:
+    # Presupuestos por defecto (producción). Ver RateLimitProperties.
+    habilitado: true
+    # Sin proxy de confianza delante NO se debe activar (anti IP-spoofing).
+    confiar-en-proxy: false
+    auth:
+      # /api/v1/auth/** (login, registro, logout): por IP, anti fuerza bruta.
+      # La ráfaga debe absorber una plantilla entera tras el mismo WiFi/CGNAT
+      # haciendo login casi a la vez al empezar el turno.
+      capacidad: 30
+      recarga-por-minuto: 20
+    refresh:
+      # /auth/refresh (B4): con el access de 15 min, cada usuario activo
+      # refresca ~4 veces/hora durante TODO el turno, y la clave es la IP
+      # compartida — en el bucket estricto de auth, la plantilla se
+      # auto-bloquearía el login. La fuerza bruta no es la amenaza (256 bits):
+      # esto solo frena abuso volumétrico. ~100 usuarios/IP × 4/h ≈ 7/min.
+      capacidad: 60
+      recarga-por-minuto: 40
+    api:
+      # Resto de /api/**: por usuario autenticado (o IP si no hay JWT).
+      capacidad: 40
+      recarga-por-minuto: 120

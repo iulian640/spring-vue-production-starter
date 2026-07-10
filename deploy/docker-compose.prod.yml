@@ -1,0 +1,60 @@
+# Producción autocontenida de Sofrito: BD + backend + web (nginx con la PWA).
+# Uso: crear deploy/.env con las variables de abajo y
+#   docker compose -f deploy/docker-compose.prod.yml up -d --build
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sofrito
+      POSTGRES_USER: sofrito
+      POSTGRES_PASSWORD: ${SOFRITO_DB_PASSWORD:?falta SOFRITO_DB_PASSWORD en deploy/.env}
+    volumes:
+      - sofrito-datos:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U sofrito']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SOFRITO_DB_URL: jdbc:postgresql://db:5432/sofrito
+      SOFRITO_DB_USUARIO: sofrito
+      SOFRITO_DB_PASSWORD: ${SOFRITO_DB_PASSWORD:?falta SOFRITO_DB_PASSWORD en deploy/.env}
+      # Mínimo 32 bytes. Genera uno con: openssl rand -base64 48
+      SOFRITO_SEGURIDAD_JWT_SECRETO: ${SOFRITO_SEGURIDAD_JWT_SECRETO:?falta SOFRITO_SEGURIDAD_JWT_SECRETO en deploy/.env}
+      # Detrás del nginx de este compose la IP real llega en X-Forwarded-For.
+      SOFRITO_CONFIAR_EN_PROXY: 'true'
+
+  web:
+    image: nginx:alpine
+    restart: unless-stopped
+    depends_on:
+      - backend
+    # Escucha en HTTP plano: este servicio NO debe quedar de cara a internet
+    # tal cual. Va SIEMPRE detrás de un terminador TLS (Caddy/Traefik o el LB
+    # del cloud) que haga HTTPS y redirija 80→443; si no, el login y el JWT
+    # viajan en claro (MITM en el WiFi del local). Por eso se publica solo en
+    # 127.0.0.1 (accesible para el proxy TLS del host, no desde fuera).
+    # La cabecera HSTS del nginx solo surte efecto una vez servido por HTTPS.
+    ports:
+      - '127.0.0.1:80:80'
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      # Snippet de cabeceras de seguridad que el nginx.conf incluye en cada
+      # location con Cache-Control propio (nginx no las hereda si no). FUERA de
+      # conf.d/ para que nginx no intente cargarlo como server block propio.
+      - ./security-headers.conf:/etc/nginx/security-headers.conf:ro
+      # La PWA compilada: npm run build en frontend/ antes de levantar.
+      - ../frontend/dist:/usr/share/nginx/html:ro
+
+volumes:
+  sofrito-datos:
