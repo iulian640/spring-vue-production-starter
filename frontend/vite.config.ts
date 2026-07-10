@@ -19,8 +19,8 @@ export default defineConfig({
         description:
           'Base de producción para apps Spring Boot + Vue: cuentas, sesiones revocables y RGPD ya resueltos.',
         lang: 'es',
-        // "Nómina clara": la app arranca en papel; el tema oscuro lo pone el
-        // sistema en runtime (el manifest solo admite un color).
+        // La app arranca en claro; el tema oscuro lo pone el sistema en
+        // runtime (el manifest solo admite un color).
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
