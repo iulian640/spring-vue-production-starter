@@ -1,5 +1,7 @@
 # spring-vue-production-starter
 
+[![CI](https://github.com/iulian640/spring-vue-production-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/iulian640/spring-vue-production-starter/actions/workflows/ci.yml)
+
 A Spring Boot 3 + Vue 3 + Capacitor starter with the boring parts done right:
 accounts, sessions, deletion, limits, tests, backups. Runnable as is.
 
